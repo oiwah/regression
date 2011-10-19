@@ -6,7 +6,6 @@
 
 namespace regression {
 typedef std::vector<std::pair<size_t, double> > feature_vector;
-typedef std::unordered_map<std::string, size_t> feature2id;
 
 struct datum {
   double output;

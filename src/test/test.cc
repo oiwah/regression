@@ -12,13 +12,12 @@ int main(int argc, char** argv) {
     return -1;
   }
 
-  regression::feature2id f2i(0);
   std::vector<regression::datum> train;
-  if (!ParseFile(argv[1], &train, &f2i, true))
+  if (!ParseFile(argv[1], &train))
     return -1;
 
   std::vector<regression::datum> test;
-  if (!ParseFile(argv[2], &test, &f2i, true))
+  if (!ParseFile(argv[2], &test))
     return -1;
 
   regression::subgradient::SubgradientSquared sgh(0.01);

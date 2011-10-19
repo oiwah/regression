@@ -5,9 +5,7 @@
 
 namespace regression {
 bool ParseFile(const char* file_path,
-               std::vector<regression::datum>* data,
-               feature2id* f2i,
-               bool libsvm=false) {
+               std::vector<regression::datum>* data) {
   std::vector<regression::datum>(0).swap(*data);
 
   std::ifstream ifs(file_path);
@@ -29,26 +27,11 @@ bool ParseFile(const char* file_path,
 
     datum.output = output;
 
-    if (!libsvm) {
-      std::string word = "";
-      while (iss >> word) {
-        size_t word_id = 0;
-        if (f2i->find(word) == f2i->end()) {
-          word_id = f2i->size();
-          f2i->insert(std::make_pair(word, word_id));
-        } else {
-          word_id = f2i->at(word);
-        }
-
-        datum.fv.push_back(std::make_pair(word_id, 1.0));
-      }
-    } else {
-      size_t id = 0;
-      char comma = 0;
-      double value = 0.0;
-      while (iss >> id >> comma >> value) {
-        datum.fv.push_back(std::make_pair(id, value));
-      }
+    size_t id = 0;
+    char comma = 0;
+    double value = 0.0;
+    while (iss >> id >> comma >> value) {
+      datum.fv.push_back(std::make_pair(id, value));
     }
     data->push_back(datum);
   }
@@ -75,5 +58,4 @@ int Run (T& regression,
   std::cout << std::endl;
   return 0;
 }
-
 } //namespace
