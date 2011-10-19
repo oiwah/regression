@@ -1,0 +1,15 @@
+#!/usr/bin/python
+
+def build(bld):
+    bld.install_files('${PREFIX}/include/regression',
+                      bld.path.ant_glob('**/*.h'),
+                      cwd=bld.path.find_dir('src'),
+                      relative_trick=True)
+
+    bld.shlib(source = ['subgradient/squared.cc',
+                        'dual_averaging/da.cc',
+                        ],
+              target = 'regressions',
+              includes=bld.SRCPATH)
+
+    bld.recurse('test')
