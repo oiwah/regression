@@ -16,8 +16,8 @@ Regression Version
 Optimization
 ------------
 
-* Subgradient Method (Hinge-Loss)
-* Primal-Dual Averaging (Hinge-Loss + L2-regularization[proximal])
+* Subgradient Method (Squared-Loss)
+* Primal-Dual Averaging (Squared-Loss + L2-regularization[proximal])
 
 Author
 ------
